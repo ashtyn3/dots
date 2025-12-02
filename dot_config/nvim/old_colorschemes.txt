@@ -1,0 +1,8 @@
+Removed colorschemes from plugins/init.lua:
+
+- "p00f/alabaster.nvim"
+- "mohvn/peachpuff-legacy"
+- "Mofiqul/vscode.nvim"
+- "ellisonleao/gruvbox.nvim"
+
+Current colorscheme: naysayer

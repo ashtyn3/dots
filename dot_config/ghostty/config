@@ -1,0 +1,12 @@
+auto-update-channel = tip
+#theme = Apple System Colors
+# theme = dark:Builtin Solarized Dark,light:Builtin Solarized Light
+# theme = vscode-light.conf
+theme = naysayer.conf
+# theme = compline
+# theme = GruvboxLight
+
+
+font-family = SFMono Nerd Font
+# font-family = Monaspace Neon Frozen
+
