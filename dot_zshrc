@@ -159,3 +159,17 @@ export PATH=/Users/ashtynmorel-blake/local/not-mine/zls/zig-out/:$PATH
 [[ ! -r '/Users/ashtynmorel-blake/.opam/opam-init/init.zsh' ]] || source '/Users/ashtynmorel-blake/.opam/opam-init/init.zsh' > /dev/null 2> /dev/null
 # END opam configuration
 export PATH=/Users/ashtynmorel-blake/.local/share/bob/nightly/bin:$PATH
+export PATH=/Users/ashtynmorel-blake/Library/pnpm/nodejs/25.2.0/bin/:$PATH
+export PATH=/Users/ashtynmorel-blake/go/bin/:$PATH
+alias sp="spotify_player"
+
+# Vite+ bin (https://viteplus.dev)
+. "$HOME/.vite-plus/env"
+
+# Android toolchain (Expo / React Native)
+export JAVA_HOME="/opt/homebrew/opt/openjdk@17/libexec/openjdk.jdk/Contents/Home"
+export ANDROID_HOME="$HOME/Library/Android/sdk"
+export ANDROID_SDK_ROOT="$ANDROID_HOME"
+export PATH="$JAVA_HOME/bin:$ANDROID_HOME/platform-tools:$ANDROID_HOME/emulator:$PATH"
+export PATH=$PATH:~/.android-sdk-macosx/platform-tools/
+export PATH=$PATH:~/.android-sdk-macosx/platform-tools/

@@ -1,85 +1,87 @@
 -- Plugin setups
 require("fidget").setup({})
 require("flash").setup({})
-require("hardtime").setup({})
-require("nvim-surround").setup({})
+-- <leader>w* keeps surround off Flash's `s` and uses a short, non-repeated prefix.
+require("nvim-surround").setup({
+	keymaps = {
+		normal = "<leader>wa",
+		normal_cur = "<leader>wl",
+		normal_line = false,
+		normal_cur_line = false,
+		visual = "S",
+		visual_line = false,
+		delete = "<leader>wd",
+		change = "<leader>wr",
+		change_line = false,
+		insert = false,
+		insert_line = false,
+	},
+})
 require("which-key").setup({})
-require("neogit").setup({})
-require("trouble").setup({})
+vim.g.compile_mode = {
+    default_command = function()
+        local commands = {
+            python = "python %",
+            lua = "lua %",
+            javascript = "bun %",
+            typescript = "bun %",
+            c = "cc -o %:r % && ./%:r",
+            cpp = "cc -std=c++23 -o %:r % && ./%:r",
+            java = "javac % && java %:r",
+            go = "go run %",
+            zig = (vim.fn.findfile("build.zig", ".;") ~= "") and "zig build run" or "zig run %",
+        }
+
+        return vim.fn.expandcmd(commands[vim.bo.filetype] or "make -k ")
+    end,
+    input_word_completion = true,
+    bang_expansion = true,
+}
 require("oil").setup({
     default_file_explorer = true,
     view_options = {
         show_hidden = true,
     },
 })
-require("mason").setup()
-require("mason-lspconfig").setup({
-    ensure_installed = { "lua_ls", "rust_analyzer" },
-    handlers = {
-        function(server_name)
-            require("lspconfig")[server_name].setup({})
-        end,
-    },
-})
-local configs = require("nvim-treesitter.configs")
-configs.setup({
-    ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "elixir", "heex", "javascript", "html" },
-    sync_install = false,
-    highlight = { enable = true },
-    indent = { enable = true },
-})
 require("telescope").setup({
     defaults = {
+        file_ignore_patterns = { "node_modules" },
         preview = {
             filesize_limit = 0.1,
         },
     },
     extensions = {
         wrap_results = true,
-        fzf = {},
-        history = {
-            limit = 100,
-        },
         ["ui-select"] = {
             require("telescope.themes").get_dropdown {},
         },
     },
 })
-pcall(require("telescope").load_extension, "fzf")
-pcall(require("telescope").load_extension, "smart_history")
 pcall(require("telescope").load_extension, "ui-select")
-require("blink.cmp").setup({
-    keymap = { preset = "enter" },
-    appearance = {
-        nerd_font_variant = "normal",
+require("typst-preview").setup({
+    dependencies_bin = {
+        ['tinymist'] = '/Users/ashtynmorel-blake/.local/share/nvim/mason/bin/tinymist'
     },
-    completion = {
-        menu = {
-            draw = {
-                components = {
-                    kind_icon = {
-                        text = function(ctx)
-                            local kind_icon, _, _ = require("mini.icons").get("lsp", ctx.kind)
-                            return kind_icon
-                        end,
-                        highlight = function(ctx)
-                            local _, hl, _ = require("mini.icons").get("lsp", ctx.kind)
-                            return hl
-                        end,
-                    },
-                    kind = {
-                        highlight = function(ctx)
-                            local _, hl, _ = require("mini.icons").get("lsp", ctx.kind)
-                            return hl
-                        end,
-                    },
-                },
-            },
-        },
-    },
-    sources = {
-        default = { "lsp", "path", "snippets", "buffer" },
-    },
-    fuzzy = { implementation = "prefer_rust_with_warning" },
+    port = 23635,
+    invert_colors = "auto",
 })
-vim.cmd.colorscheme("naysayer")
+vim.g.acme_style = "plain"
+vim.cmd.colorscheme("acme")
+vim.o.background = "light"
+require("core.highlights").setup()
+vim.g.vimtex_view_method = "sioyek"
+vim.g.vimtex_compiler_method = "latexmk"
+vim.g.vimtex_compiler_latexmk = {
+    out_dir = "",
+    aux_dir = ".build",
+    options = {
+        "-pdf",
+        "-shell-escape",
+        "-verbose",
+        "-file-line-error",
+        "-synctex=1",
+        "-interaction=nonstopmode",
+    },
+}
+-- Disable VimTeX's default keymaps so they don't conflict; we set our own below
+vim.g.vimtex_mappings_enabled = 0

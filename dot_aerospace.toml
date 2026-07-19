@@ -21,7 +21,7 @@ enable-normalization-opposite-orientation-for-nested-containers = true
 # See: https://nikitabobko.github.io/AeroSpace/guide#layouts
 # The 'accordion-padding' specifies the size of accordion padding
 # You can set 0 to disable the padding feature
-accordion-padding = 0
+accordion-padding = 10
 
 # Possible values: tiles|accordion
 default-root-container-layout = 'tiles'
@@ -72,10 +72,13 @@ automatically-unhide-macos-hidden-apps = false
 #   "layout floating",
 # ]
 
+[[on-window-detected]]
+if.app-id = "com.apple.weather"
+run = ['layout floating']
 
 [[on-window-detected]]
 if.app-id = "com.mitchellh.ghostty"
-run = ['layout floating', 'move-node-to-workspace Terminal']
+run = ['move-node-to-workspace Terminal']
 
 [[on-window-detected]]
 if.app-id = "com.ashtyn.timey"
@@ -91,7 +94,15 @@ run = 'move-node-to-workspace Browser'
 
 [[on-window-detected]]
 if.app-id = 'com.spotify.client'
-run = ['layout floating','move-node-to-workspace Browser']
+run = ['layout floating','move-node-to-workspace Other']
+
+[[on-window-detected]]
+if.app-id = 'com.apple.MobileSMS'
+run = ['layout floating']
+
+[[on-window-detected]]
+if.app-id = 'com.apple.finder'
+run = ['layout floating']
 
 [[on-window-detected]]
 if.app-id = 'net.imput.helium'

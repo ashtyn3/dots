@@ -1,8 +1,18 @@
-Removed colorschemes from plugins/init.lua:
+Colorschemes I liked or tried. Not installed anymore — just a memory shelf.
 
-- "p00f/alabaster.nvim"
-- "mohvn/peachpuff-legacy"
-- "Mofiqul/vscode.nvim"
-- "ellisonleao/gruvbox.nvim"
+Current: pbrisbin/vim-colors-off (:colorscheme off + core/highlights.lua tuned to cold-dark)
 
-Current colorscheme: naysayer
+Previously on this machine:
+- robertmeta/nofrils (nofrils-dark + core/highlights.lua tuned to cold-dark)
+
+Previously removed:
+- p00f/alabaster.nvim
+- mohvn/peachpuff-legacy
+- Mofiqul/vscode.nvim
+- ellisonleao/gruvbox.nvim
+- whizikxd/naysayer-colors.nvim
+- rebelot/kanagawa.nvim
+  - liked kanagawa-lotus with cream bg #E9E2D0
+- e-ink-colorscheme/e-ink.nvim
+- gmr458/cold.nvim
+- catppuccin/nvim (lazy.nvim era)

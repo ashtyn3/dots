@@ -1,4 +1,4 @@
-import { To, KeyCode, Manipulator, KarabinerRules } from "./types";
+import { To, KeyCode, Manipulator, KarabinerRules, ShiftableKeyCode } from "./types";
 
 /**
  * Custom way to describe a command in a layer
@@ -10,7 +10,7 @@ export interface LayerCommand {
 
 type HyperKeySublayer = {
     // The ? is necessary, otherwise we'd have to define something for _every_ key code
-    [key_code in KeyCode]?: LayerCommand;
+    [key_code in ShiftableKeyCode]?: LayerCommand;
 };
 
 /**
@@ -84,10 +84,10 @@ export function createHyperSubLayer(
                     modifiers: {
                         mandatory: (() => {
                             if (command_key.includes("_shift")) {
-                                return ["left_shift"]
+                                return ["shift"]
                             }
                             if (command_key.includes("_option")) {
-                                return ["left_option"]
+                                return ["option"]
                             }
                         })()
                     },
@@ -111,7 +111,7 @@ export function createHyperSubLayer(
  * activates at a time
  */
 export function createHyperSubLayers(subLayers: {
-    [key_code in KeyCode]?: HyperKeySublayer | LayerCommand;
+    [key_code in ShiftableKeyCode]?: HyperKeySublayer | LayerCommand;
 }): KarabinerRules[] {
     const allSubLayerVariables = (
         Object.keys(subLayers) as (keyof typeof subLayers)[]
@@ -157,7 +157,7 @@ export function createHyperSubLayers(subLayers: {
     );
 }
 
-function generateSubLayerVariableName(key: KeyCode) {
+function generateSubLayerVariableName(key: ShiftableKeyCode) {
     return `hyper_sublayer_${key}`;
 }
 
@@ -202,7 +202,18 @@ export function asp(rest: string): LayerCommand {
     return {
         to: [
             {
-                shell_command: `~/.local/bin/aerospace ${rest}`,
+                shell_command: `/opt/homebrew/bin/aerospace ${rest}`,
+            },
+        ],
+        description: `Window: ${rest}`,
+    };
+}
+
+export function rif(rest: string): LayerCommand {
+    return {
+        to: [
+            {
+                shell_command: `/opt/homebrew/bin/rift-cli execute ${rest}`,
             },
         ],
         description: `Window: ${rest}`,

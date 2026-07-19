@@ -1,12 +1,20 @@
 auto-update-channel = tip
+# macos-titlebar-style=hidden
+window-save-state = never
+window-padding-balance=true
+
 #theme = Apple System Colors
 # theme = dark:Builtin Solarized Dark,light:Builtin Solarized Light
 # theme = vscode-light.conf
-theme = naysayer.conf
+# theme = naysayer.conf
 # theme = compline
-# theme = GruvboxLight
+# theme = Gruvbox Light
+# theme = eink.conf
+theme = dark:cold-dark.conf,light:acme.conf
+#theme = cold-dark.conf
 
-
-font-family = SFMono Nerd Font
+# font-family = SFMono Nerd Font
+font-family = More Perfect DOS VGA
+font-size = 15
 # font-family = Monaspace Neon Frozen
 
